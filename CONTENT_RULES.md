@@ -1,77 +1,205 @@
-# SystemCanvas - Content Creation Rules & Plan
+# SystemCanvas — Content Creation Rules & Book Plan
 
 ## Vision
 
 A website with "books" on technical subjects (System Design, Distributed Systems, etc.).
 Each book teaches the subject from zero to advanced — like a smart friend explaining over coffee.
+Less content, but everything that matters. No filler. No fluff.
 
 ---
 
-## The 7 Rules of Writing (apply to ALL subjects)
+## The Science: Why These Rules Exist
 
-### Rule 1: Explain Like They're 12, Then Like They're 22
+These rules come from research on how the human brain actually learns. Every rule maps to a proven principle:
 
-Every topic has two layers:
-- **First**: A dead-simple analogy anyone can understand (no jargon)
-- **Then**: The real technical version, building on that analogy
+| Principle | Source | What It Means For Us |
+|-----------|--------|---------------------|
+| Working memory holds ~4 items | Cowan (2001), Cognitive Load Theory (Sweller) | Max 4 core ideas per section. Group related facts into named chunks. |
+| Analogy activates frontoparietal network | fMRI studies (PMC2951846) | Brain literally searches for stored patterns that match. Every concept needs a real-life analogy FIRST. |
+| Concrete organizers beat abstract ones | Advance organizer studies (Bruner) | Lead with a real example, never a definition. "Netflix does X" beats "X is defined as..." |
+| Active recall is 3x more effective than re-reading | Dunlosky et al. (2013) meta-analysis | Q&A sections that force retrieval, not recognition. |
+| Spaced repetition strengthens long-term memory | Ebbinghaus + modern studies | Reference earlier topics in later chapters = free spaced repetition. |
+| Dual coding: text + visuals together | Paivio's dual coding theory | Diagrams for flows. Tables for comparisons. Every visual must answer a question. |
+| Zone of Proximal Development | Vygotsky | Each topic stretches exactly one step beyond the previous. State prerequisites. |
+| Feynman Technique | Retrieval practice research | If you can't explain it in simple words, you don't understand it enough to write it. |
+| SUCCESs framework | "Made to Stick" (Heath brothers) | Content that sticks is: Simple, Unexpected, Concrete, Credible, Emotional, Story-driven. |
+| Why technical books fail | Head First research + reader complaints (HN/Reddit) | Walls of text, definition-first, no testing, jargon without anchoring, no visuals. |
 
-> **Example**: "A load balancer is like a restaurant host. When customers (requests) walk in, the host doesn't send everyone to one waiter. They spread people across all waiters so nobody gets overwhelmed."
-> Then: "A load balancer distributes incoming network traffic across multiple servers using algorithms like round robin, least connections, or consistent hashing."
+---
 
-### Rule 2: Every Concept Gets a Real Company Example
+## The 10 Rules of Writing (Apply to ALL Subjects)
 
-Don't just explain *what* it is. Show *where* it lives in the wild.
+### Rule 1: Analogy First, Technical Second
 
-Each topic must include:
-- **What it is** (1-2 sentences)
-- **Why it exists** (what problem does it solve?)
-- **How it works** (simple mechanics)
-- **Real-world example** (e.g., "Netflix uses CDNs to serve videos from servers close to you — that's why a user in Tokyo and one in London both get fast streaming")
-- **When to use / when NOT to use** (trade-offs)
+The brain learns new things by mapping them to things it already knows. fMRI studies show this literally activates pattern-matching circuits in the brain.
 
-### Rule 3: Less Words, More Clarity
+**Every concept gets two layers:**
+- **Layer 1**: A dead-simple analogy from everyday life (no jargon, no tech words)
+- **Layer 2**: The real technical version, building on that analogy
 
-- Max 150 words per concept explanation (before examples/Q&A)
-- If a sentence doesn't teach something new, delete it
-- Prefer tables and bullet points over paragraphs
-- One idea per paragraph, max 3 sentences
+> **Example**:
+> *Layer 1*: "A load balancer is like a restaurant host. When customers walk in, the host doesn't send everyone to the same waiter. They spread people across all waiters so nobody gets overwhelmed."
+>
+> *Layer 2*: "A load balancer distributes incoming network traffic across multiple servers using algorithms like round robin, least connections, or consistent hashing."
+
+**Why this works**: The analogy creates a "shelf" in the brain. The technical details then have somewhere to land.
+
+### Rule 2: Concrete Before Abstract — Always
+
+Research shows students recall significantly more when given concrete examples BEFORE the abstract principle. Abstract-first explanations perform no better than no explanation at all.
+
+**Never open a topic with a definition.** Always open with:
+- A scenario ("Your app suddenly gets 10x users overnight...")
+- A real company ("Netflix serves videos from servers near you...")
+- A problem ("Two users edit the same document at the same time...")
+
+> **Bad**: "A CDN is a geographically distributed network of proxy servers."
+> **Good**: "Netflix streams videos to 200 million users across the world. A user in Tokyo and one in London both get fast streaming. How? Netflix puts copies of popular videos on servers close to users everywhere. That's a CDN."
+
+### Rule 3: The 4-Item Rule (Respect Working Memory)
+
+Working memory holds ~4 items. Anything beyond that creates overload and nothing sticks.
+
+- **Max 4 core ideas per section**
+- **Max 150 words per core explanation** (before examples/Q&A)
+- **One idea per paragraph**, max 3 sentences
+- **Group related concepts into named chunks** (e.g., "The Database Toolkit" = indexing + sharding + replication)
 - No filler phrases ("It is important to note that...", "As we all know...")
+- Prefer tables and bullet points over paragraphs
 
 ### Rule 4: Build a Mental Map Before Details
 
-Each chapter opens with:
+The brain needs to know WHERE to file new information before it can absorb it. Without context, facts float disconnected and are forgotten.
+
+**Every chapter opens with:**
 1. **One-line summary**: What this chapter is about
-2. **Why you should care**: A real scenario where this matters
-3. **Prerequisites**: What you should already know
+2. **Why you should care**: A real scenario where this matters (make them feel it — "Your app goes down at 3AM and 10,000 users can't pay")
+3. **Prerequisites**: What you should already know (link to those chapters)
 4. **The big picture**: How this fits into the overall system
 
-This reduces cognitive load — the brain needs a "shelf" to put new information on.
+### Rule 5: Real Company Examples — Every Single Topic
 
-### Rule 5: Q&A That Anticipates Confusion
+Don't just explain *what* it is. Show *where* it lives in the wild. Real companies make content credible and concrete (two of the six SUCCESs traits).
 
-After each topic, include 3-5 Q&A pairs that answer:
-- The dumb question nobody wants to ask ("Wait, so is a cache just... RAM?")
-- The follow-up question ("If we cache everything, when does the cache become stale?")
-- The interview/practical question ("You're designing Twitter. Where would you put a cache and why?")
-- The comparison question ("How is this different from X?")
+**Each topic must include:**
+- **What it is** (1-2 sentences, plain English)
+- **Why it exists** (what problem does it solve — tell a story)
+- **How it works** (simple mechanics, with a diagram)
+- **Real-world example** ("WhatsApp uses Cassandra because...", "Uber uses geo-hashing to...")
+- **When to use / when NOT to use** (explicit trade-offs, with a table)
 
-### Rule 6: Progressive Complexity With Callbacks
+**Minimum 2 different company examples per topic.** One for "how it's used" and one for "what happens when you don't use it" or "an alternative approach."
 
-Topics are ordered so each one builds on the last. Later topics reference earlier ones:
-- Chapter on Caching says "Remember the load balancer from Chapter 3? A cache sits between it and the database."
-- Chapter on Sharding says "This is like horizontal scaling (Chapter 1), but for your database specifically."
+### Rule 6: Q&A That Forces Active Recall
 
-This creates a connected web of knowledge, not isolated facts.
+Reading feels like learning but isn't. Dunlosky's meta-analysis (2013) found active recall is the single most effective study technique. Our Q&A sections are the most important part of each topic.
 
-### Rule 7: Show the System, Not Just the Parts
+**After each topic, include 4-5 Q&A pairs:**
 
-Every section ends with a "Putting It Together" that shows how 3-4 concepts from that section work together in a real system. This is where the deep understanding happens.
+| Type | Purpose | Example |
+|------|---------|---------|
+| The "dumb" question | Validates basic understanding | "Wait, so is a cache just... RAM?" |
+| The follow-up | Tests deeper thinking | "If we cache everything, when does the cache become stale?" |
+| The comparison | Forces discrimination between similar concepts | "How is sharding different from replication?" |
+| The real-world design | Applies concept to a system | "You're designing Twitter. Where would you put a cache and why?" |
+| The failure scenario | Tests edge-case thinking | "What happens to your cache if one server dies?" |
+
+**Important**: Questions must force *retrieval* ("What problem does sharding solve?"), not *recognition* ("Sharding splits data across machines: True/False?"). Retrieval is 3x more effective.
+
+### Rule 7: Progressive Complexity With Callbacks
+
+Topics are ordered in a dependency graph (Layer 1 → Layer 7). Each topic stretches exactly one step beyond the previous one (Vygotsky's Zone of Proximal Development).
+
+**Later topics explicitly reference earlier ones:**
+- Caching chapter: "Remember the load balancer from Chapter 9? A cache sits between it and the database."
+- Sharding chapter: "This is like horizontal scaling (Chapter 2), but for your database specifically."
+- Event-Driven chapter: "Remember message queues from Chapter 17? Now imagine every service in your system communicating through them."
+
+**Why this works**: Each callback is a free spaced-repetition event. It strengthens the memory of the earlier concept while building the new one.
+
+**Scaffolding rule**: Early chapters use more analogies and hand-holding. Later chapters assume the reader's vocabulary. Gradually remove training wheels.
+
+### Rule 8: Show the System, Not Just the Parts
+
+Knowing what a load balancer does is useless if you can't see it working inside a real system. Every section ends with a **"Putting It Together"** mini-design that shows 3-4 concepts from that section working together.
+
+This is where understanding clicks — when parts become a whole.
+
+### Rule 9: Every Visual Must Answer a Question
+
+Dual coding (text + visuals) improves retention, but only when the visual carries meaning the text doesn't. No decorative images.
+
+- **Diagrams** → for flows and architectures ("Where does data go?")
+- **Tables** → for comparisons with trade-offs ("Which option fits which case?")
+- **Numbered step lists** → for processes ("What happens in what order?")
+
+Every visual gets a caption that states what question it answers.
+
+### Rule 10: Make Them Feel It (The SUCCESs Rule)
+
+Content that sticks is: **S**imple, **U**nexpected, **C**oncrete, **C**redible, **E**motional, **S**tories.
+
+- **Simple**: Strip to the essential message. Not dumbing down — prioritizing.
+- **Unexpected**: Break expectations. "Your database can handle 1 million reads/second but only 1,000 writes" grabs attention.
+- **Concrete**: Tangible language. "A server 50 miles away" beats "reduced latency."
+- **Credible**: Real numbers. "WhatsApp handles 10 billion messages/day on just 50 engineers."
+- **Emotional**: Make them care. "Your app goes down at 3AM..." beats "availability is important."
+- **Stories**: "Here's how a message gets from you to your friend on WhatsApp" is a story. "Message queues decouple services" is a definition.
 
 ---
 
-## System Design Book — Chapter Plan
+## Topic Template (Every Topic Follows This Structure)
 
-### Part 1: Foundations (The "Why" Before the "How")
+```
+## [Topic Name]
+
+**One-liner**: [What this topic is, in one sentence]
+**Why you should care**: [A scenario that makes them feel the problem]
+**Prerequisites**: [Links to earlier topics they need]
+
+### The Simple Version
+[Everyday analogy — no tech words. 3-5 sentences.]
+
+### How It Actually Works
+[Technical explanation building on the analogy. Max 150 words. Include a diagram.]
+
+### Real-World Examples
+[Minimum 2 company examples with concrete numbers]
+
+**Example 1: [Company]**
+[How they use this concept and why]
+
+**Example 2: [Company]**
+[A different approach or what happens without it]
+
+### When To Use / When NOT To Use
+[Table with trade-offs]
+
+| Use When | Don't Use When |
+|----------|---------------|
+| ...      | ...            |
+
+### Q&A
+[4-5 questions following the types in Rule 6]
+
+**Q: [The "dumb" question]**
+A: [Answer]
+
+**Q: [The follow-up]**
+A: [Answer]
+
+... (3 more)
+```
+
+---
+
+## System Design Book — Complete Chapter Plan
+
+Based on research across DDIA (Kleppmann), System Design Interview (Alex Xu Vol 1 & 2), Grokking (DesignGurus), ByteByteGo, and Stanford/MIT distributed systems courses.
+
+Topics ordered by dependency graph (each layer needs the layers above it).
+
+### Part 1: Foundations — The "Why" Before the "How" (Layer 1-2)
 
 | # | Topic | Core Question It Answers |
 |---|-------|------------------------|
@@ -82,118 +210,155 @@ Every section ends with a "Putting It Together" that shows how 3-4 concepts from
 | 5 | Consistency Models | If two users update the same data, who wins? |
 | 6 | CAP & PACELC Theorems | Why can't I have everything? |
 | 7 | ACID vs BASE | When do I need strict rules vs speed? |
+| 8 | Back-of-Envelope Estimation | How do I calculate if my design can handle the load? |
 
-**Putting It Together**: Design a simple notes app and discuss which trade-offs you'd make.
+**Putting It Together**: Design a simple notes app — discuss which trade-offs you'd make for 100 users vs 10 million users.
 
-### Part 2: Building Blocks (The Toolbox)
-
-| # | Topic | Core Question It Answers |
-|---|-------|------------------------|
-| 8 | DNS | How does "google.com" become a server? |
-| 9 | Load Balancers | How do I handle 10x traffic overnight? |
-| 10 | Reverse Proxy & API Gateway | Who guards the front door? |
-| 11 | Databases — SQL vs NoSQL | Where should I store my data? |
-| 12 | Database Indexing | Why is my query taking 10 seconds? |
-| 13 | Database Sharding | My database is too big for one machine. Now what? |
-| 14 | Database Replication | What if my database machine dies? |
-| 15 | Caching | How do I stop hitting the database for the same data? |
-| 16 | CDN | How does Netflix stream fast everywhere? |
-| 17 | Message Queues | How do I handle work that takes 5 minutes? |
-| 18 | Rate Limiting | How do I stop one user from killing my servers? |
-| 19 | Object Storage | Where do I put my images and videos? |
-| 20 | Search Infrastructure | How does Google find results in 0.3 seconds? |
-
-**Putting It Together**: Trace a request through an e-commerce system — from typing the URL to seeing the product page.
-
-### Part 3: Patterns & Architecture (The Playbook)
+### Part 2: Building Blocks — The Toolbox (Layer 3)
 
 | # | Topic | Core Question It Answers |
 |---|-------|------------------------|
-| 21 | Microservices vs Monolith | Should I split my app into pieces? |
-| 22 | Event-Driven Architecture | How do services talk without waiting? |
-| 23 | CQRS & Event Sourcing | What if reads and writes need different shapes? |
-| 24 | Consistent Hashing | How do I add servers without reshuffling everything? |
-| 25 | Circuit Breaker & Retry | What happens when a service I depend on dies? |
-| 26 | Idempotency | What if the same request hits twice? |
-| 27 | API Design (REST, gRPC, GraphQL) | How should services communicate? |
-| 28 | WebSockets & Real-Time | How do I push live updates to users? |
-| 29 | Data Serialization | JSON vs Protobuf — when does format matter? |
-| 30 | Observability | How do I know my system is healthy? |
+| 9 | DNS | How does "google.com" become a server? |
+| 10 | Load Balancers | How do I handle 10x traffic overnight? |
+| 11 | Reverse Proxy & API Gateway | Who guards the front door? |
+| 12 | Databases — SQL vs NoSQL | Where should I store my data? |
+| 13 | Database Indexing | Why is my query taking 10 seconds? |
+| 14 | Database Sharding | My database is too big for one machine. Now what? |
+| 15 | Database Replication | What if my database machine dies? |
+| 16 | Caching | How do I stop hitting the database for the same data? |
+| 17 | CDN | How does Netflix stream fast everywhere? |
+| 18 | Message Queues | How do I handle work that takes 5 minutes? |
+| 19 | Rate Limiting | How do I stop one user from killing my servers? |
+| 20 | Object Storage | Where do I put my images and videos? |
+| 21 | Search Infrastructure | How does Google find results in 0.3 seconds? |
 
-**Putting It Together**: Design the backend of a food delivery app showing which patterns solve which problems.
+**Putting It Together**: Trace a request through an e-commerce system — from typing the URL to seeing the product page. Show every building block in action.
 
-### Part 4: Distributed Systems Deep Dive (The Hard Stuff)
+### Part 3: Patterns & Architecture — The Playbook (Layer 4-5)
 
 | # | Topic | Core Question It Answers |
 |---|-------|------------------------|
-| 31 | Consensus (Raft, Paxos) | How do machines agree on one truth? |
-| 32 | Leader Election | Who's in charge when there are multiple servers? |
-| 33 | Distributed Locking | How do I prevent two servers from doing the same thing? |
-| 34 | Bloom Filters | How do I check billions of items in milliseconds? |
-| 35 | Heartbeats & Health Checks | How do I detect dead servers? |
-| 36 | Geo-Routing & Multi-Region | How do I serve users on every continent? |
-| 37 | Data Warehousing & Analytics | How do I analyze petabytes of data? |
-| 38 | Fault Tolerance Patterns | How do I build systems that survive disasters? |
+| 22 | Microservices vs Monolith | Should I split my app into pieces? |
+| 23 | Event-Driven Architecture | How do services talk without waiting? |
+| 24 | CQRS & Event Sourcing | What if reads and writes need completely different shapes? |
+| 25 | Consistent Hashing | How do I add servers without reshuffling everything? |
+| 26 | Circuit Breaker & Retry | What happens when a service I depend on dies? |
+| 27 | Idempotency | What if the same request hits my server twice? |
+| 28 | API Design (REST, gRPC, GraphQL) | How should services communicate? |
+| 29 | WebSockets & Real-Time | How do I push live updates to users? |
+| 30 | Data Serialization | JSON vs Protobuf — when does format matter? |
+| 31 | Service Discovery | How do services find each other? |
+| 32 | Observability (Metrics, Logging, Tracing) | How do I know my system is healthy? |
+
+**Putting It Together**: Design the backend of a food delivery app — showing which pattern solves which problem.
+
+### Part 4: Distributed Systems — The Hard Stuff (Layer 6)
+
+| # | Topic | Core Question It Answers |
+|---|-------|------------------------|
+| 33 | Consensus (Raft, Paxos) | How do machines agree on one truth? |
+| 34 | Leader Election | Who's in charge when there are multiple servers? |
+| 35 | Distributed Locking | How do I prevent two servers from doing the same thing? |
+| 36 | Distributed Transactions (2PC, Saga) | How do I update data across multiple services safely? |
+| 37 | Bloom Filters | How do I check billions of items in milliseconds? |
+| 38 | Heartbeats & Health Checks | How do I detect dead servers? |
+| 39 | Geo-Routing & Multi-Region | How do I serve users on every continent? |
+| 40 | Data Warehousing & Analytics (OLTP vs OLAP) | How do I analyze petabytes of data? |
+| 41 | Failure Patterns (Cascading Failures, Thundering Herd, Split Brain) | What are the scariest ways systems break? |
 
 **Putting It Together**: Walk through how a payment system works across regions — consistency, failover, and recovery.
 
-### Part 5: Real System Designs (The Practice)
+### Part 5: Real System Designs — The Practice (Layer 7, Capstone)
 
-Full worked examples using the RESHADED framework:
+Full worked examples. Each one exercises 5+ concepts from Parts 1-4.
 
-| # | System | Key Concepts Tested |
-|---|--------|-------------------|
-| 1 | Design WhatsApp | WebSockets, message queues, presence, E2E encryption |
-| 2 | Design YouTube | Video transcoding, CDN, adaptive streaming, metadata |
-| 3 | Design URL Shortener | Hashing, key generation, caching, analytics pipeline |
-| 4 | Design Twitter/Feed | Fan-out, ranking, caching, pub/sub |
-| 5 | Design Uber | Geo-hashing, matching, real-time tracking, surge pricing |
-| 6 | Design Google Search | Web crawling, inverted index, PageRank, caching |
+| # | System | Key Concepts Practiced |
+|---|--------|----------------------|
+| 1 | Design WhatsApp | WebSockets, message queues, presence, E2E encryption, connection management |
+| 2 | Design YouTube | Video transcoding, CDN, adaptive bitrate, object storage, recommendation |
+| 3 | Design URL Shortener | Hashing, key generation, caching, analytics pipeline, database choice |
+| 4 | Design Twitter/News Feed | Fan-out (write vs read), ranking, caching, pub/sub, timeline generation |
+| 5 | Design Uber | Geo-hashing, real-time matching, surge pricing, location tracking |
+| 6 | Design Google Search | Web crawling, inverted index, PageRank, caching at scale |
+| 7 | Design Notification System | Multi-channel delivery, rate limiting, priority queues, retry |
+| 8 | Design Payment System | Idempotency, distributed transactions, consistency, audit trails |
 
-Each design follows:
+**Each design follows this structure:**
 1. **Requirements** (functional + non-functional)
-2. **Capacity Estimation** (back-of-envelope math)
-3. **High-Level Architecture** (the big picture)
+2. **Capacity Estimation** (back-of-envelope math with real numbers)
+3. **High-Level Architecture** (diagram showing all components)
 4. **Key Components** (deep dive into 3-4 critical pieces)
-5. **Database & Schema** (what data, where, why)
+5. **Database & Schema** (what data, where, why — with actual table designs)
 6. **Key Trade-offs** (what you sacrifice and why it's worth it)
-7. **Q&A** (interviewer follow-ups)
+7. **What Could Go Wrong** (failure scenarios and how to handle them)
+8. **Q&A** (5-7 interviewer follow-up questions with answers)
+
+### Bonus: Topics Most Resources Miss
+
+These are woven into relevant chapters, not standalone:
+
+| Topic | Where It Fits |
+|-------|--------------|
+| Cost-aware design (cloud costs, compute vs storage trade-offs) | Part 2 & 5 (each design mentions cost) |
+| Security fundamentals (OAuth, JWT, encryption, DDoS) | Part 3 (API Design chapter) |
+| Migration patterns (monolith → microservices, zero-downtime deploy) | Part 3 (Microservices chapter) |
+| Failure modes (retry storms, cascading failures, thundering herd) | Part 4 (dedicated chapter) |
+| Capacity planning with actual math practice | Part 1 (Estimation chapter) + Part 5 (every design) |
 
 ---
 
 ## Content Quality Checklist (Before Publishing Any Topic)
 
-- [ ] Can a non-engineer understand the first explanation?
-- [ ] Is there at least one real company example?
+- [ ] Can a non-engineer understand the analogy/simple version?
+- [ ] Does it open with a concrete example, NOT a definition?
+- [ ] Are there minimum 2 real company examples with numbers?
 - [ ] Is the core explanation under 150 words?
-- [ ] Are there 3-5 Q&A pairs?
+- [ ] Are there 4-5 Q&A pairs (retrieval, not recognition)?
 - [ ] Does it reference a previous topic (callback)?
-- [ ] Is there a "when NOT to use this" section?
-- [ ] Would a diagram help? If yes, is there one?
+- [ ] Is there a clear "when to use / when NOT to use" section?
+- [ ] Does every visual answer a specific question?
 - [ ] Zero filler sentences?
+- [ ] Does it make them *feel* the problem before solving it?
+- [ ] Max 4 core ideas in any single section?
 
 ---
 
-## Principles for Future Subjects
+## Content Ratio Per Topic
 
-When adding a new book (Distributed Systems, Databases, etc.):
+Based on research (Head First series, ByteByteGo, Educative):
 
-1. **Reuse the 7 Rules above** — they apply to every subject
-2. **Don't repeat content** — if System Design covers caching, the Databases book links to it instead of re-explaining
+| Component | % of Topic | Purpose |
+|-----------|-----------|---------|
+| Simple analogy | 10% | Hook + anchor to existing knowledge |
+| Core explanation | 20% | The real concept, plain language |
+| Visual/diagram | 15% | Spatial understanding, dual coding |
+| Real-world examples | 25% | Concrete + credible |
+| Q&A / exercises | 20% | Active recall + retrieval practice |
+| Trade-offs / when not to use | 10% | Decision-making skill |
+
+**Target**: ~30% theory, ~40% examples, ~30% practice/Q&A.
+
+---
+
+## Rules for Future Subjects
+
+When adding a new book (Distributed Systems, Databases, Operating Systems, etc.):
+
+1. **Reuse all 10 Rules above** — they apply to every subject
+2. **Don't repeat content** — if System Design covers caching, the Databases book links to it
 3. **Each book has its own "Putting It Together" examples** relevant to that domain
-4. **Start from the PDF/outline** if one exists, then restructure using these rules
-5. **Max 40 topics per book** — if you have more, split into two books
-6. **Every book starts with "Who is this for?" and "What you'll learn"**
+4. **Max 40 topics per book** — if you have more, split into two books
+5. **Every book starts with "Who is this for?" and "What you'll learn"**
+6. **Research the subject's dependency graph first** — order topics by what depends on what
+7. **Identify the top 5 "worked examples" for that domain** — capstone projects that tie concepts together
+8. **Find what competing resources miss** — that's our edge
 
 ---
 
-## How Humans Learn (The Science Behind These Rules)
+## Research Sources
 
-These rules aren't arbitrary. They're based on how the brain works:
-
-- **Chunking**: The brain processes 4±1 items at once. That's why each section groups 7-10 related topics, and each topic has a clear structure.
-- **Analogy-first**: New knowledge anchors to existing knowledge. The restaurant-host analogy for load balancers works because everyone has been to a restaurant.
-- **Spaced callbacks**: Referencing earlier topics strengthens memory connections. Each mention of a previous concept is a mini-review.
-- **Active recall via Q&A**: Reading feels like learning but isn't. Questions force the brain to retrieve and connect information.
-- **Concrete before abstract**: Real company examples (Netflix, WhatsApp) give the brain something tangible before introducing the abstract concept.
-- **Cognitive load management**: "Prerequisites" and "Big Picture" at the start of each chapter tell the brain where to file new information.
+This plan is based on research from:
+- **Learning Science**: Cognitive Load Theory (Sweller), Chunking (Cowan 2001), fMRI analogy studies, Dunlosky meta-analysis (2013), Vygotsky ZPD, Paivio dual coding, Feynman Technique
+- **Content Design**: "Made to Stick" (Heath brothers), Head First series methodology
+- **System Design Curriculum**: DDIA (Kleppmann), System Design Interview (Alex Xu Vol 1 & 2), Grokking System Design (DesignGurus), ByteByteGo, Stanford/MIT distributed systems courses
+- **Reader Feedback**: Common complaints on HN, Reddit about technical books
