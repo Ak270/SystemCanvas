@@ -53,7 +53,7 @@ SystemCanvas/
 ### Rules:
 - All books live under `books/[subject-slug]/`
 - Each book has a `PLAN.md` and separate `part-N-[short-name].md` files
-- Commit directly to `main` branch — NO new branches
+- Commit directly to the default branch — NO new branches
 - Commit after completing each phase (plan, each part)
 - Push after every commit
 - Part filenames: `part-1-foundations.md`, `part-2-building-blocks.md`, etc. (lowercase, hyphens, descriptive)
@@ -108,7 +108,7 @@ Then commit and push to main:
 ```bash
 git add books/[SUBJECT_SLUG]/PLAN.md
 git commit -m "Add [SUBJECT] book plan"
-git push origin main
+git push
 ```
 
 Wait for approval before Phase 2.
@@ -144,7 +144,7 @@ After the plan is approved, write each Part as a separate file following the Top
 ```bash
 git add books/[SUBJECT_SLUG]/part-N-[name].md
 git commit -m "Add [SUBJECT] Part N: [Part Title]"
-git push origin main
+git push
 ```
 
 ### Content Ratio Target
@@ -170,7 +170,7 @@ git push origin main
 
 ### Important Rules
 - ALL files go in `books/[SUBJECT_SLUG]/` — nowhere else
-- ALL commits go to `main` branch — no new branches
+- ALL commits go to the default branch — no new branches
 - Do NOT repeat content that already exists in another SystemCanvas book. Link to it instead.
 - Write one Part at a time. Commit and push after each. Wait for approval before the next Part.
 - If a concept can't be simplified, research more — you don't understand it well enough yet.
