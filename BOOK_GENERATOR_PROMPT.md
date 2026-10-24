@@ -31,6 +31,7 @@ SystemCanvas/
 ├── books/
 │   ├── system-design/
 │   │   ├── PLAN.md           # Chapter plan for this book
+│   │   ├── part-0-jargon-buster.md  # Glossary of every technical term (REQUIRED)
 │   │   ├── part-1-foundations.md
 │   │   ├── part-2-building-blocks.md
 │   │   ├── part-3-patterns.md
@@ -45,6 +46,7 @@ SystemCanvas/
 │   │   └── ...
 │   └── [SUBJECT_SLUG]/       # ← Your book goes here
 │       ├── PLAN.md
+│       ├── part-0-jargon-buster.md
 │       ├── part-1-[short-name].md
 │       ├── part-2-[short-name].md
 │       └── ...
@@ -52,7 +54,7 @@ SystemCanvas/
 
 ### Rules:
 - All books live under `books/[subject-slug]/`
-- Each book has a `PLAN.md` and separate `part-N-[short-name].md` files
+- Each book has a `PLAN.md`, a `part-0-jargon-buster.md`, and separate `part-N-[short-name].md` files
 - Commit directly to the default branch — NO new branches
 - Commit after completing each phase (plan, each part)
 - Push after every commit
@@ -72,6 +74,7 @@ Follow EVERY rule in the attached CONTENT_RULES.md file. These are non-negotiabl
 8. **Putting It Together** — every section ends with a mini-design showing concepts working together
 9. **Every visual described** — describe diagrams as text/ASCII where needed, tables for comparisons
 10. **Make them feel it** — Simple, Unexpected, Concrete, Credible, Emotional, Stories
+11. **No unexplained jargon** — gloss every technical term, acronym and tool name (Redis, read replica, stateless server…) in plain English on first use, and list it in the book's Part 0 Jargon Buster (format in CONTENT_RULES.md)
 
 ## Your Task — Phase 1: Create the Book Plan
 
@@ -140,9 +143,17 @@ After the plan is approved, write each Part as a separate file following the Top
 [4-5 questions following the 5 types: dumb, follow-up, comparison, real-world design, failure scenario]
 ```
 
+### Jargon Buster (do this alongside every Part)
+
+Beginners abandon books that use words like "Redis" or "stateless" without explaining them. So:
+1. Right after the plan is approved, create `books/[SUBJECT_SLUG]/part-0-jargon-buster.md` (exact format in CONTENT_RULES.md, "Jargon Buster Format") covering every term the plan's chapters will need.
+2. While writing each Part, gloss every technical term, acronym and product name in a few plain words the first time it appears in a chapter.
+3. After finishing each Part, extend the Jargon Buster with the new terms (use grep on the Part for acronyms, backticked and bolded terms; do NOT re-read the whole book) and include it in the same commit.
+4. Never define a term using another term the reader has not yet met.
+
 ### After writing each Part:
 ```bash
-git add books/[SUBJECT_SLUG]/part-N-[name].md
+git add books/[SUBJECT_SLUG]/part-N-[name].md books/[SUBJECT_SLUG]/part-0-jargon-buster.md
 git commit -m "Add [SUBJECT] Part N: [Part Title]"
 git push
 ```
@@ -167,6 +178,7 @@ git push
 - [ ] Zero filler sentences?
 - [ ] Makes them FEEL the problem before solving it?
 - [ ] Max 4 core ideas in any single section?
+- [ ] Every technical term/acronym/tool glossed on first use AND listed in Part 0 Jargon Buster?
 
 ### Important Rules
 - ALL files go in `books/[SUBJECT_SLUG]/` — nowhere else

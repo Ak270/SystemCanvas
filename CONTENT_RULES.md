@@ -27,7 +27,7 @@ These rules come from research on how the human brain actually learns. Every rul
 
 ---
 
-## The 10 Rules of Writing (Apply to ALL Subjects)
+## The 11 Rules of Writing (Apply to ALL Subjects)
 
 ### Rule 1: Analogy First, Technical Second
 
@@ -146,6 +146,16 @@ Content that sticks is: **S**imple, **U**nexpected, **C**oncrete, **C**redible, 
 - **Emotional**: Make them care. "Your app goes down at 3AM..." beats "availability is important."
 - **Stories**: "Here's how a message gets from you to your friend on WhatsApp" is a story. "Message queues decouple services" is a definition.
 
+### Rule 11: No Unexplained Jargon (The Jargon Buster Rule)
+
+Readers quit when a page says "Redis", "read replica" or "stateless server" and never explains it. Every book therefore ships with a glossary and obeys three habits:
+
+- **Part 0: Jargon Buster** — every book has `part-0-jargon-buster.md` (see "Jargon Buster Format" below). It is written in Phase 1 right after the plan is approved, and extended whenever a later Part introduces new terms.
+- **First use gets a gloss** — the first time a term appears in a chapter, add a 3-8 word plain-English gloss in brackets or an em-dash: "a read replica (a copy of the database that only answers reads)". Never rely on the glossary alone.
+- **Tool and product names count** — Redis, Kafka, S3, Postgres, Kubernetes are jargon to a beginner. Say what each one *is* ("Redis, an in-memory key-value store") on first use.
+
+**Test**: pick any paragraph at random. Could a smart person from outside software follow it, or would they need to look something up? If the latter, gloss the term or add it to the Jargon Buster.
+
 ---
 
 ## Topic Template (Every Topic Follows This Structure)
@@ -193,6 +203,33 @@ A: [Answer]
 
 ---
 
+## Jargon Buster Format (Part 0 of Every Book)
+
+File: `books/[slug]/part-0-jargon-buster.md`. It uses the same structure the app parses for any Part, so no code changes are needed.
+
+```markdown
+# Part 0: Jargon Buster
+
+*One italic line: what this is and how to use it.*
+
+---
+
+## Jargon 1: [Group Name, e.g. "Servers & Scaling"]
+
+### [Term]
+Plain-English meaning in 1-3 sentences. *Everyday analogy.* Why it matters / where the book uses it.
+```
+
+Rules:
+- **Group terms** into 5-8 themed `## Jargon N: …` sections (never one flat alphabetical list), ordered from the most basic to the most advanced.
+- **One `###` per term**, 1-3 sentences, analogy in italics, no sentence longer than 25 words. No term may be defined using another undefined term.
+- **Coverage**: include every acronym (SLA, ACID, TTL), every product/tool name (Redis, Kafka, S3), every named algorithm or theorem, and every everyday word used in a special sense ("partition", "term", "lease").
+- **Find terms cheaply**: don't re-read the whole book. Grep the finished Parts for capitalised words, acronyms, `backticked` names and bolded terms, rank by frequency, and define the ones a beginner could not explain.
+- **Self-contained**: each book has its own Jargon Buster, even if another book defines the same term. Keep it short rather than linking out.
+- **Keep it in sync**: when a new Part adds terms, append them to the right group in the same commit.
+
+---
+
 ## Content Quality Checklist (Before Publishing Any Topic)
 
 - [ ] Can a non-engineer understand the analogy/simple version?
@@ -206,6 +243,7 @@ A: [Answer]
 - [ ] Zero filler sentences?
 - [ ] Does it make them *feel* the problem before solving it?
 - [ ] Max 4 core ideas in any single section?
+- [ ] Is every technical term, acronym and product name glossed on first use, and present in `part-0-jargon-buster.md`?
 
 ---
 
@@ -230,11 +268,11 @@ Based on research (Head First series, ByteByteGo, Educative):
 
 When adding a new book (Distributed Systems, Databases, Operating Systems, etc.):
 
-1. **Reuse all 10 Rules above** — they apply to every subject
+1. **Reuse all 11 Rules above** — they apply to every subject (including Rule 11: Jargon Buster)
 2. **Don't repeat content** — if System Design covers caching, the Databases book links to it
 3. **Each book has its own "Putting It Together" examples** relevant to that domain
 4. **Max 40 topics per book** — if you have more, split into two books
-5. **Every book starts with "Who is this for?" and "What you'll learn"**
+5. **Every book starts with "Who is this for?" and "What you'll learn"**, and includes a `part-0-jargon-buster.md`
 6. **Research the subject's dependency graph first** — order topics by what depends on what
 7. **Identify the top 5 "worked examples" for that domain** — capstone projects that tie concepts together
 8. **Find what competing resources miss** — that's our edge
